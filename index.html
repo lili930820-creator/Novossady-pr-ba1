@@ -37,11 +37,17 @@
       }
 
       .hero::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
-          url('./novossadi-hero-bg.jpg');
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('./NOVOemberek.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  z-index: -2;
+}
         background-size: cover;
         background-position: center;
         opacity: 0.45;
