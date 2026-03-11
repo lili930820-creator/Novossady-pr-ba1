@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novossadi&Co.</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bento-glow-rgb: 132, 0, 255;
+        --bento-bg: #060010;
+        --bento-border: #392e4e;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, Arial, sans-serif;
+        background: #f3f4f6;
+        color: #fff;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 24px;
+        gap: 20px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('./novossadi-hero-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 1;
+        z-index: -2;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.45) 90%);
+        z-index: -1;
+      }
+
+      .shiny-text {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        background: linear-gradient(90deg, #ffffff 0%, #d1d1d1 50%, #ffffff 100%);
+        background-size: 200% auto;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: shine 3s linear infinite;
+      }
+
+      .subtitle {
+        margin-top: 1.5rem;
+        font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #9994b0, #c9c8bf);
+        background-size: 200% 200%;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: gradient-flow 8s ease-in-out infinite alternate;
+      }
+
+      @keyframes gradient-flow {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      .form-section {
+        background: #f3f4f6;
+        color: #000;
+        padding: 80px 24px;
+      }
+
+      .container {
+        max-width: 768px;
+        margin: 0 auto;
+      }
+
+      .stack {
+        display: grid;
+        gap: 24px;
+      }
+
+      .animated-block {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .animated-block:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      label {
+        display: block;
+        font-weight: 500;
+      }
+
+      .input-style {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-top: 6px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .input-style:focus {
+        outline: none;
+        border-color: #000;
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .style-section {
+        padding-top: 40px;
+      }
+
+      .style-title {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 24px;
+      }
+
+      .style-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 768px) {
+        .style-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .style-card {
+        cursor: pointer;
+        position: relative;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid var(--bento-border);
+        background: var(--bento-bg);
+        color: #fff;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        --glow-x: 50%;
+        --glow-y: 50%;
+        --glow-intensity: 0;
+        --glow-radius: 180px;
+      }
+
+      .style-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: inherit;
+        pointer-events: none;
+        background: radial-gradient(
+          var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+          rgba(var(--bento-glow-rgb), calc(var(--glow-intensity) * 0.85)) 0%,
+          rgba(var(--bento-glow-rgb), calc(var(--glow-intensity) * 0.4)) 32%,
+          transparent 62%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+      }
+
+      .style-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), 0 0 28px rgba(var(--bento-glow-rgb), 0.22);
+      }
+
+      .style-card.selected {
+        box-shadow: 0 0 0 2px rgba(var(--bento-glow-rgb), 0.8), 0 0 28px rgba(var(--bento-glow-rgb), 0.3);
+      }
+
+      .img-placeholder {
+        height: 160px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, #131125, #070312);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #b7b0d6;
+      }
+
+      .card-title {
+        text-align: center;
+        font-weight: 500;
+        margin: 0;
+        color: #f8f8ff;
+      }
+
+      .card-ripple {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2;
+        animation: card-ripple 0.8s ease-out forwards;
+        background: radial-gradient(circle, rgba(var(--bento-glow-rgb), 0.35) 0%, rgba(var(--bento-glow-rgb), 0.16) 35%, transparent 70%);
+      }
+
+      @keyframes card-ripple {
+        from {
+          transform: scale(0);
+          opacity: 1;
+        }
+        to {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+
+      .magic-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 3;
+        background: rgba(var(--bento-glow-rgb), 1);
+        box-shadow: 0 0 8px rgba(var(--bento-glow-rgb), 0.65);
+        animation: particle-float 1s ease-out forwards;
+      }
+
+      @keyframes particle-float {
+        to {
+          transform: translate(var(--dx), var(--dy)) scale(0.35);
+          opacity: 0;
+        }
+      }
+
+      .global-spotlight {
+        position: fixed;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 50;
+        opacity: 0;
+        mix-blend-mode: screen;
+        transition: opacity 0.25s ease;
+        background: radial-gradient(
+          circle,
+          rgba(var(--bento-glow-rgb), 0.18) 0%,
+          rgba(var(--bento-glow-rgb), 0.08) 22%,
+          rgba(var(--bento-glow-rgb), 0.03) 38%,
+          transparent 70%
+        );
+      }
+
+      .upload-wrap {
+        padding-top: 48px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .folder-upload {
+        background: #2e2a41;
+        color: white;
+        padding: 14px 28px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .folder-upload:hover {
+        transform: scale(1.05);
+      }
+
+      .filename {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 0.875rem;
+        color: #4b5563;
+      }
+
+      .cta {
+        background: #000;
+        padding: 96px 24px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .star-button {
+        position: relative;
+        padding: 18px 48px;
+        font-size: 18px;
+        border: 2px solid #fff;
+        color: #fff;
+        background: transparent;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .star-button:hover {
+        background: #fff;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <h1 class="shiny-text">Novossadi&Co.</h1>
+        <p class="subtitle gradient-text">Fedezd fel a saját vizuális stílusodat.</p>
+      </section>
+
+      <section class="form-section">
+        <div class="container stack">
+          <div class="animated-block">
+            <label for="name">Neve:</label>
+            <input id="name" type="text" class="input-style" />
+          </div>
+
+          <div class="animated-block">
+            <label for="email">E-mail cím:</label>
+            <input id="email" type="email" class="input-style" />
+          </div>
+
+          <div class="animated-block">
+            <label for="age">Életkora:</label>
+            <input id="age" type="number" class="input-style" />
+          </div>
+
+          <div class="animated-block">
+            <label for="weight">Testsúly:</label>
+            <input id="weight" type="number" class="input-style" />
+          </div>
+
+          <div class="animated-block">
+            <label for="height">Magasság:</label>
+            <input id="height" type="number" class="input-style" />
+          </div>
+
+          <div class="style-section">
+            <p class="style-title">1. Válassza ki a legszimpatikusabb hétköznapi viseletet:</p>
+
+            <div class="style-grid">
+              <div class="style-card" data-group="casual" data-style="1">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Hétköznapi stílus 1</p>
+              </div>
+              <div class="style-card" data-group="casual" data-style="2">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Hétköznapi stílus 2</p>
+              </div>
+              <div class="style-card" data-group="casual" data-style="3">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Hétköznapi stílus 3</p>
+              </div>
+              <div class="style-card" data-group="casual" data-style="4">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Hétköznapi stílus 4</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="style-section">
+            <p class="style-title">2. Válassza ki a legszimpatikusabb üzleti viseletet:</p>
+
+            <div class="style-grid">
+              <div class="style-card" data-group="business" data-style="1">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Üzleti stílus 1</p>
+              </div>
+              <div class="style-card" data-group="business" data-style="2">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Üzleti stílus 2</p>
+              </div>
+              <div class="style-card" data-group="business" data-style="3">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Üzleti stílus 3</p>
+              </div>
+              <div class="style-card" data-group="business" data-style="4">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Üzleti stílus 4</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="style-section">
+            <p class="style-title">3. Válassza ki a legszimpatikusabb alkalmi viseletet:</p>
+
+            <div class="style-grid">
+              <div class="style-card" data-group="formal" data-style="1">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Alkalmi stílus 1</p>
+              </div>
+              <div class="style-card" data-group="formal" data-style="2">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Alkalmi stílus 2</p>
+              </div>
+              <div class="style-card" data-group="formal" data-style="3">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Alkalmi stílus 3</p>
+              </div>
+              <div class="style-card" data-group="formal" data-style="4">
+                <div class="img-placeholder">Kép helye</div>
+                <p class="card-title">Alkalmi stílus 4</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="upload-wrap">
+            <label class="folder-upload" for="portraitInput">
+              <span>Portré feltöltése</span>
+            </label>
+            <input id="portraitInput" type="file" hidden />
+          </div>
+
+          <p class="filename" id="fileNameText" hidden></p>
+        </div>
+      </section>
+
+      <section class="cta">
+        <button class="star-button">Kérem az elemzést</button>
+      </section>
+    </main>
+
+    <script>
+      const effectsConfig = {
+        textAutoHide: true,
+        enableStars: true,
+        enableSpotlight: true,
+        enableBorderGlow: true,
+        disableAnimations: false,
+        spotlightRadius: 300,
+        particleCount: 12,
+        enableTilt: false,
+        glowColor: '132, 0, 255',
+        clickEffect: true,
+        enableMagnetism: true
+      };
+
+      document.documentElement.style.setProperty('--bento-glow-rgb', effectsConfig.glowColor);
+
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const animationsDisabled = effectsConfig.disableAnimations || isMobile;
+      const cards = document.querySelectorAll('.style-card');
+      const formSection = document.querySelector('.form-section');
+      let spotlightEl = null;
+
+      if (!animationsDisabled && effectsConfig.enableSpotlight) {
+        spotlightEl = document.createElement('div');
+        spotlightEl.className = 'global-spotlight';
+        spotlightEl.style.width = `${effectsConfig.spotlightRadius * 2.35}px`;
+        spotlightEl.style.height = `${effectsConfig.spotlightRadius * 2.35}px`;
+        document.body.appendChild(spotlightEl);
+
+        document.addEventListener('mousemove', (e) => {
+          const rect = formSection.getBoundingClientRect();
+          const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+          spotlightEl.style.left = `${e.clientX}px`;
+          spotlightEl.style.top = `${e.clientY}px`;
+          spotlightEl.style.opacity = inside ? '1' : '0';
+        });
+      }
+
+      function spawnParticles(card, x, y) {
+        if (animationsDisabled || !effectsConfig.enableStars) return;
+        for (let i = 0; i < effectsConfig.particleCount; i += 1) {
+          const p = document.createElement('span');
+          p.className = 'magic-particle';
+          p.style.left = `${x}px`;
+          p.style.top = `${y}px`;
+          p.style.setProperty('--dx', `${(Math.random() - 0.5) * 90}px`);
+          p.style.setProperty('--dy', `${(Math.random() - 0.5) * 90}px`);
+          p.style.animationDelay = `${i * 10}ms`;
+          card.appendChild(p);
+          p.addEventListener('animationend', () => p.remove(), { once: true });
+        }
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const relativeX = (x / rect.width) * 100;
+          const relativeY = (y / rect.height) * 100;
+          card.style.setProperty('--glow-x', `${relativeX}%`);
+          card.style.setProperty('--glow-y', `${relativeY}%`);
+          card.style.setProperty('--glow-radius', `${effectsConfig.spotlightRadius * 0.6}px`);
+
+          if (!animationsDisabled && effectsConfig.enableBorderGlow) {
+            card.style.setProperty('--glow-intensity', '1');
+          }
+
+          if (!animationsDisabled) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const tiltX = effectsConfig.enableTilt ? ((y - centerY) / centerY) * -8 : 0;
+            const tiltY = effectsConfig.enableTilt ? ((x - centerX) / centerX) * 8 : 0;
+            const magnetX = effectsConfig.enableMagnetism ? (x - centerX) * 0.04 : 0;
+            const magnetY = effectsConfig.enableMagnetism ? (y - centerY) * 0.04 : 0;
+            card.style.transform = `translate(${magnetX}px, ${magnetY - 2}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          }
+        });
+
+        card.addEventListener('mouseenter', (e) => {
+          const rect = card.getBoundingClientRect();
+          spawnParticles(card, e.clientX - rect.left, e.clientY - rect.top);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.setProperty('--glow-intensity', '0');
+          card.style.transform = 'translate(0, 0) rotateX(0deg) rotateY(0deg)';
+        });
+
+        card.addEventListener('click', (e) => {
+          const group = card.dataset.group;
+          const sameGroupCards = document.querySelectorAll(`.style-card[data-group="${group}"]`);
+          sameGroupCards.forEach((c) => c.classList.remove('selected'));
+          card.classList.add('selected');
+
+          if (effectsConfig.clickEffect) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const size = Math.max(rect.width, rect.height) * 1.35;
+            const ripple = document.createElement('span');
+            ripple.className = 'card-ripple';
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            ripple.style.left = `${x - size / 2}px`;
+            ripple.style.top = `${y - size / 2}px`;
+            card.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+          }
+        });
+      });
+
+      const portraitInput = document.getElementById('portraitInput');
+      const fileNameText = document.getElementById('fileNameText');
+
+      portraitInput.addEventListener('change', (e) => {
+        const fileName = e.target.files && e.target.files[0] ? e.target.files[0].name : '';
+        if (fileName) {
+          fileNameText.hidden = false;
+          fileNameText.textContent = `Feltöltve: ${fileName}`;
+        } else {
+          fileNameText.hidden = true;
+          fileNameText.textContent = '';
+        }
+      });
+    </script>
+  </body>
+</html>
