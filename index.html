@@ -551,10 +551,8 @@
           }
         });
 
-        card.addEventListener('mouseenter', (e) => {
-          const rect = card.getBoundingClientRect();
-          spawnParticles(card, e.clientX - rect.left, e.clientY - rect.top);
-        });
+        // particle effect kikapcsolva
+        card.addEventListener('mouseenter', () => {});
 
         card.addEventListener('mouseleave', () => {
           card.style.setProperty('--glow-intensity', '0');
