@@ -649,6 +649,45 @@
           fileNameText.textContent = '';
         }
       });
+
+      const inputs = document.querySelectorAll(
+  "#name, #email, #age, #weight, #height"
+);
+
+const cardsGroups = ["casual", "business", "formal"];
+const progressBar = document.getElementById("formProgress");
+
+function updateProgress() {
+  let completed = 0;
+  let total = inputs.length + cardsGroups.length + 1;
+
+  inputs.forEach(input => {
+    if (input.value.trim() !== "") completed++;
+  });
+
+  cardsGroups.forEach(group => {
+    if (document.querySelector(`.style-card[data-group="${group}"].selected`)) {
+      completed++;
+    }
+  });
+
+  const fileInput = document.getElementById("portraitInput");
+  if (fileInput.files.length > 0) completed++;
+
+  const percent = (completed / total) * 100;
+  progressBar.style.width = percent + "%";
+}
+
+inputs.forEach(input => input.addEventListener("input", updateProgress));
+
+document.querySelectorAll(".style-card").forEach(card => {
+  card.addEventListener("click", updateProgress);
+});
+
+document
+  .getElementById("portraitInput")
+  .addEventListener("change", updateProgress);
+      
     </script>
   </body>
 </html>
