@@ -375,18 +375,14 @@
         transform: translateY(-2px);
       }
     
-      @keyframes cardFloat {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-4px); }
-        100% { transform: translateY(0px); }
-}
-      .style-card {
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+   @keyframes cardFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-.style-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+.style-card {
+  animation: cardFloat 3.5s ease-in-out infinite;
 }
 
     </style>
