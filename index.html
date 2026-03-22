@@ -467,18 +467,14 @@
   transition: width 0.4s ease;
 }
 .elegant-progress {
-  position: relative;
-  top: 100%; /* közvetlenül a hero után */
-  margin-top: 24px auto 0 auto; /* kis távolság a kép és a sáv között */
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative; /* absolute helyett relative */
+  margin: 24px auto 0 auto; /* távolság a hero tartalom alatt */
   width: 60%;
   height: 18px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  z-index: 1;
 }
 
 .elegant-progress .progress-bar {
