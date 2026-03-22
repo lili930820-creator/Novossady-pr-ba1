@@ -466,7 +466,28 @@
   background: linear-gradient(90deg, #c7a77a, #e6c79c);
   transition: width 0.4s ease;
 }
+.elegant-progress {
+  position: absolute;
+  top: 100%; /* közvetlenül a hero után */
+  margin-top: 24px; /* kis távolság a kép és a sáv között */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 1;
+}
 
+.elegant-progress .progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c7a77a, #f8f8ff);
+  border-radius: 12px;
+  transition: width 0.4s ease;
+}
       
       
     </style>
