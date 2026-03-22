@@ -179,8 +179,12 @@
       .style-grid {
         display: grid;
         gap: 24px;
-        grid-template-columns: 1fr;
-      }
+        grid-template-columns: repeat(2, 1fr);
+}
+
+.img-placeholder {
+  height: 340px;
+}
 
       @media (min-width: 768px) {
         .style-grid {
