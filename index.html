@@ -657,6 +657,9 @@
       </section>
     </main>
 
+<input type="file" id="fileInput" style="display:none;" />
+
+    
     <script>
       const effectsConfig = {
         textAutoHide: true,
@@ -820,6 +823,32 @@ document
   .getElementById("portraitInput")
   .addEventListener("change", updateProgress);
 
+      const placeholders = document.querySelectorAll('.img-placeholder');
+const fileInput = document.getElementById('fileInput');
+
+placeholders.forEach(placeholder => {
+  placeholder.addEventListener('click', () => {
+    fileInput.click(); // megnyitja a fájl kiválasztót
+
+    fileInput.onchange = () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        placeholder.innerHTML = ''; // eltávolítja a "Kép helye" szöveget
+        const img = document.createElement('img');
+        img.src = e.target.result;       // feltölti a kiválasztott képet
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        placeholder.appendChild(img);
+      };
+
+      reader.readAsDataURL(file);
+    };
+  });
+});
       
     </script>
   </body>
