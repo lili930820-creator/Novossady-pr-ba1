@@ -467,24 +467,23 @@
   transition: width 0.4s ease;
 }
 .elegant-progress {
-  position: relative; /* absolute helyett relative */
-  margin: 24px auto 0 auto; /* távolság a hero tartalom alatt */
-  width: 60%;
-  height: 18px;
+  position: absolute; /* hero alatt pozicionáljuk */
+  bottom: 0; /* közvetlenül a hero aljához */
+  left: 0;
+  width: 100%; /* faltól-falig */
+  height: 8px; /* vékony, elegáns sáv */
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  border-radius: 0; /* teljes szélességnél nincs lekerekítés */
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 2; /* hero fölé */
 }
 
 .elegant-progress .progress-bar {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #c7a77a, #f8f8ff);
-  border-radius: 12px;
   transition: width 0.4s ease;
 }
-      
       
     </style>
   </head>
@@ -493,12 +492,10 @@
       <section class="hero">
   <h1 class="shiny-text">Novossadi Zoltán</h1>
   <p class="subtitle gradient-text">Fedezd fel a saját vizuális stílusodat.</p>
-</section>
 
-<div class="elegant-progress">
-  <div class="progress-bar" id="formProgress"></div>
-</div>
-
+  <div class="elegant-progress">
+    <div class="progress-bar" id="formProgress"></div>
+  </div>
 </section>
      
     <section class="form-section">
