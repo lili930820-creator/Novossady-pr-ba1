@@ -533,7 +533,6 @@
           </div>
 
           <div class="triple-row">
-                      <div class="upload-wrap">
 
   
   <div class="animated-block">
@@ -555,6 +554,15 @@
     <label for="height">Magasság:</label>
     <input id="height" type="number" class="input-style" />
   </div>
+
+            <div class="upload-wrap">
+  <label class="folder-upload" for="portraitInput">
+    <span>Portré feltöltése</span>
+  </label>
+  <input id="portraitInput" type="file" hidden />
+</div>
+
+<p class="filename" id="fileNameText" hidden></p>
 
 </div>
 
@@ -655,14 +663,7 @@
 
   </div>
 </div>
-
-            <label class="folder-upload" for="portraitInput">
-              <span>Portré feltöltése</span>
-            </label>
-            <input id="portraitInput" type="file" hidden />
-          </div>
-
-          <p class="filename" id="fileNameText" hidden></p>
+            
         </div>
       </section>
 
