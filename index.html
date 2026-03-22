@@ -179,7 +179,9 @@
       .style-grid {
         display: grid;
         gap: 24px;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 220px);
+        justify-content: center;
+
 }
 
       @media (min-width: 768px) {
@@ -241,6 +243,7 @@
   max-width: 220px; /* EZT állítgatod */
   aspect-ratio: 3 / 4; /* EZ A LÉNYEG (álló kép) */
   border-radius: 14px;
+  margin: 0 auto 16px auto;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
