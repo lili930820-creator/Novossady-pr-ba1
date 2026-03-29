@@ -396,25 +396,24 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 420px;
+  align-items: flex-start;   /* ← EZ FONTOS (nem center!) */
   padding-right: 120px;
-  padding-top: 40px;
+  padding-top: 80px;         /* ← EZT állítgatod */
 }
 
 .star-button {
   background: #2b1d14;
   color: #f5e6d3;
-  padding: 18px 48px;
+  padding: 14px 28px;        /* ugyanaz mint a portré gomb */
   border-radius: 12px;
   border: 1px solid rgba(199, 167, 122, 0.35);
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
+  font-size: 16px;           /* EZ A LÉNYEG */
   letter-spacing: 0.5px;
-  min-width: 260px;
+  min-width: 240px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(199, 167, 122, 0.15);
 }
 
 .star-button:hover {
