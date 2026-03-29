@@ -786,43 +786,101 @@
         }
       });
 
-      const inputs = document.querySelectorAll(
-  "#name, #email, #age, #weight, #height"
-);
+      <script>
+  const TOTAL_STEPS = 12;
 
-const cardsGroups = ["casual", "business", "formal"];
-const progressBar = document.getElementById("formProgress");
+  function saveIndexProgress() {
+    const name = document.getElementById('name')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+    const age = document.getElementById('age')?.value.trim() || '';
+    const weight = document.getElementById('weight')?.value.trim() || '';
+    const height = document.getElementById('height')?.value.trim() || '';
+    const portraitFilled = portraitInput?.files?.length > 0;
 
-function updateProgress() {
-  let completed = 0;
-  let total = inputs.length + cardsGroups.length + 1;
+    localStorage.setItem('form_name', name);
+    localStorage.setItem('form_email', email);
+    localStorage.setItem('form_age', age);
+    localStorage.setItem('form_weight', weight);
+    localStorage.setItem('form_height', height);
+    localStorage.setItem('form_portrait', portraitFilled ? '1' : '0');
 
-  inputs.forEach(input => {
-    if (input.value.trim() !== "") completed++;
-  });
+    let completed = 0;
+    if (name) completed++;
+    if (email) completed++;
+    if (age) completed++;
+    if (weight) completed++;
+    if (height) completed++;
+    if (portraitFilled) completed++;
 
-  cardsGroups.forEach(group => {
-    if (document.querySelector(`.style-card[data-group="${group}"].selected`)) {
-      completed++;
+    localStorage.setItem('progress_index_completed', String(completed));
+
+    const totalCompleted =
+      completed +
+      Number(localStorage.getItem('progress_step2_completed') || 0);
+
+    const progressBar = document.getElementById('formProgress');
+    if (progressBar) {
+      progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
     }
-  });
+  }
 
-  const fileInput = document.getElementById("portraitInput");
-  if (fileInput.files.length > 0) completed++;
+  document.getElementById('name')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('email')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('age')?.addEventListener('change', saveIndexProgress);
+  document.getElementById('weight')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('height')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('portraitInput')?.addEventListener('change', saveIndexProgress);
 
-  const percent = (completed / total) * 100;
-  progressBar.style.width = percent + "%";
-}
+  saveIndexProgress();
+</script>
 
-inputs.forEach(input => input.addEventListener("input", updateProgress));
+    <script>
+  const TOTAL_STEPS = 12;
 
-document.querySelectorAll(".style-card").forEach(card => {
-  card.addEventListener("click", updateProgress);
-});
+  function saveIndexProgress() {
+    const name = document.getElementById('name')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+    const age = document.getElementById('age')?.value.trim() || '';
+    const weight = document.getElementById('weight')?.value.trim() || '';
+    const height = document.getElementById('height')?.value.trim() || '';
+    const portraitFilled = portraitInput?.files?.length > 0;
 
-document
-  .getElementById("portraitInput")
-  .addEventListener("change", updateProgress);
+    localStorage.setItem('form_name', name);
+    localStorage.setItem('form_email', email);
+    localStorage.setItem('form_age', age);
+    localStorage.setItem('form_weight', weight);
+    localStorage.setItem('form_height', height);
+    localStorage.setItem('form_portrait', portraitFilled ? '1' : '0');
+
+    let completed = 0;
+    if (name) completed++;
+    if (email) completed++;
+    if (age) completed++;
+    if (weight) completed++;
+    if (height) completed++;
+    if (portraitFilled) completed++;
+
+    localStorage.setItem('progress_index_completed', String(completed));
+
+    const totalCompleted =
+      completed +
+      Number(localStorage.getItem('progress_step2_completed') || 0);
+
+    const progressBar = document.getElementById('formProgress');
+    if (progressBar) {
+      progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
+    }
+  }
+
+  document.getElementById('name')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('email')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('age')?.addEventListener('change', saveIndexProgress);
+  document.getElementById('weight')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('height')?.addEventListener('input', saveIndexProgress);
+  document.getElementById('portraitInput')?.addEventListener('change', saveIndexProgress);
+
+  saveIndexProgress();
+</script>
 
       
     </script>
