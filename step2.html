@@ -148,18 +148,21 @@
           0 0 0 1px rgba(199,167,122,0.35),
           0 10px 30px rgba(0,0,0,0.45);
       }
-
-      .img-placeholder {
+.img-placeholder {
   width: 65%;
   height: 480px;
   max-width: 440px;
   aspect-ratio: 3 / 4;
-  border-radius: 14px;
+
   margin: 0 auto 16px auto;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;   /* ⬅️ NEM center */
   justify-content: center;
+
+  padding: 4mm 4mm 20px 4mm; /* ⬅️ EZ A KULCS */
+
+  border-radius: 14px;
 
   background:
     repeating-linear-gradient(
@@ -178,13 +181,8 @@
     ),
     linear-gradient(145deg, #2b1d14, #1a120c);
 
-  /* 🔑 EZ A LÉNYEG */
-  border-top: 1px solid rgba(199,167,122,0.25);
-  border-left: 0.5px solid rgba(199,167,122,0.25);
-  border-right: 0.5px solid rgba(199,167,122,0.25);
-  border-bottom: 1px solid rgba(199,167,122,0.25);
+  border: 1px solid rgba(199,167,122,0.25);
 }
-
       .img-placeholder img {
         width: 100%;
         height: 100%;
