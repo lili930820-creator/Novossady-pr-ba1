@@ -786,57 +786,28 @@
         }
       });
 
-      <script>
-  const TOTAL_STEPS = 12;
-
-  function saveIndexProgress() {
-    const name = document.getElementById('name')?.value.trim() || '';
-    const email = document.getElementById('email')?.value.trim() || '';
-    const age = document.getElementById('age')?.value.trim() || '';
-    const weight = document.getElementById('weight')?.value.trim() || '';
-    const height = document.getElementById('height')?.value.trim() || '';
-    const portraitFilled = portraitInput?.files?.length > 0;
-
-    localStorage.setItem('form_name', name);
-    localStorage.setItem('form_email', email);
-    localStorage.setItem('form_age', age);
-    localStorage.setItem('form_weight', weight);
-    localStorage.setItem('form_height', height);
-    localStorage.setItem('form_portrait', portraitFilled ? '1' : '0');
-
-    let completed = 0;
-    if (name) completed++;
-    if (email) completed++;
-    if (age) completed++;
-    if (weight) completed++;
-    if (height) completed++;
-    if (portraitFilled) completed++;
-
-    localStorage.setItem('progress_index_completed', String(completed));
-
-    const totalCompleted =
-      completed +
-      Number(localStorage.getItem('progress_step2_completed') || 0);
-
-    const progressBar = document.getElementById('formProgress');
-    if (progressBar) {
-      progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
-    }
-  }
-
-  document.getElementById('name')?.addEventListener('input', saveIndexProgress);
-  document.getElementById('email')?.addEventListener('input', saveIndexProgress);
-  document.getElementById('age')?.addEventListener('change', saveIndexProgress);
-  document.getElementById('weight')?.addEventListener('input', saveIndexProgress);
-  document.getElementById('height')?.addEventListener('input', saveIndexProgress);
-  document.getElementById('portraitInput')?.addEventListener('change', saveIndexProgress);
-
-  saveIndexProgress();
-</script>
-
     <script>
   const TOTAL_STEPS = 12;
 
+  const portraitInput = document.getElementById('portraitInput');
+  const fileNameText = document.getElementById('fileNameText');
+  const progressBar = document.getElementById('formProgress');
+
+  if (portraitInput && fileNameText) {
+    portraitInput.addEventListener('change', (e) => {
+      const fileName = e.target.files && e.target.files[0] ? e.target.files[0].name : '';
+      if (fileName) {
+        fileNameText.hidden = false;
+        fileNameText.textContent = `Feltöltve: ${fileName}`;
+      } else {
+        fileNameText.hidden = true;
+        fileNameText.textContent = '';
+      }
+
+      saveIndexProgress();
+    });
+  }
+
   function saveIndexProgress() {
     const name = document.getElementById('name')?.value.trim() || '';
     const email = document.getElementById('email')?.value.trim() || '';
@@ -862,11 +833,9 @@
 
     localStorage.setItem('progress_index_completed', String(completed));
 
-    const totalCompleted =
-      completed +
-      Number(localStorage.getItem('progress_step2_completed') || 0);
+    const step2Completed = Number(localStorage.getItem('progress_step2_completed') || 0);
+    const totalCompleted = completed + step2Completed;
 
-    const progressBar = document.getElementById('formProgress');
     if (progressBar) {
       progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
     }
@@ -877,12 +846,8 @@
   document.getElementById('age')?.addEventListener('change', saveIndexProgress);
   document.getElementById('weight')?.addEventListener('input', saveIndexProgress);
   document.getElementById('height')?.addEventListener('input', saveIndexProgress);
-  document.getElementById('portraitInput')?.addEventListener('change', saveIndexProgress);
 
   saveIndexProgress();
 </script>
-
-      
-    </script>
   </body>
 </html>
