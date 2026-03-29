@@ -123,45 +123,57 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .style-card {
-        cursor: pointer;
-        position: relative;
-        padding: 20px 10px;
-        border-radius: 20px;
-        border: 1px solid var(--bento-border);
-        background: var(--bento-bg);
-        color: #fff;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        text-decoration: none;
-        display: block;
-      }
+     .style-card {
+  cursor: pointer;
+  position: relative;
 
-      .style-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      }
+  padding: 12px 10px 16px; /* 🔥 alul több hely a szövegnek */
+  border-radius: 16px;
 
-      .style-card.selected {
-        border: 1px solid #c7a77a;
-        box-shadow:
-          0 0 0 1px rgba(199,167,122,0.35),
-          0 10px 30px rgba(0,0,0,0.45);
-      }
-.img-placeholder {
+  background: transparent; /* ❌ nincs barna háttér */
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* 🔥 EZ A KERET */
+  box-shadow:
+    0 0 0 1px rgba(199,167,122,0.55),
+    0 0 0 4px rgba(59,42,31,0.85);
+}
+
+    .style-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(199,167,122,0.7),
+    0 0 0 4px rgba(59,42,31,1),
+    0 10px 30px rgba(0,0,0,0.35);
+}
+
+.style-card.selected {
+  box-shadow:
+    0 0 0 1px rgba(214,182,132,0.9),
+    0 0 0 4px rgba(59,42,31,1),
+    0 10px 30px rgba(0,0,0,0.45);
+}
+
+      .img-placeholder {
   width: 65%;
   height: 480px;
   max-width: 440px;
   aspect-ratio: 3 / 4;
   border-radius: 14px;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 12px auto;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: none; /* 🔥 EZ A LÉNYEG */
-  border: none;            /* opcionális */
+  background: none;
+  border: none;
 }
 .img-placeholder img {
   display: block;
