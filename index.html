@@ -484,7 +484,7 @@
   width: min(100%, 500px);
   justify-self: start;
   display: grid;
-  gap: 48px;
+  gap: 24px;
 }
 
 .profile-intro .animated-block {
@@ -558,14 +558,20 @@
   </div>
   </div>          
 
-            <div class="upload-wrap">
-  <label class="folder-upload" for="portraitInput">
-    <span>Portré feltöltése</span>
-  </label>
-  <input id="portraitInput" type="file" hidden />
+          <div class="upload-row">
+  <div></div>
+
+  <div class="upload-wrap">
+    <label class="folder-upload" for="portraitInput">
+      <span>Portré feltöltése</span>
+    </label>
+    <input id="portraitInput" type="file" hidden />
+  </div>
+
+  <div></div>
 </div>
 
-<p class="filename" id="fileNameText" hidden></p>
+<p class="filename centered-file-name" id="fileNameText" hidden></p>
             </div>
 
 </div>
