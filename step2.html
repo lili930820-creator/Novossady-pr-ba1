@@ -163,11 +163,18 @@
   background: none; /* 🔥 EZ A LÉNYEG */
   border: none;            /* opcionális */
 }
- .img-placeholder img {
+.img-placeholder img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 14px;
+
+  box-shadow:
+    0 0 0 1px rgba(199,167,122,0.55),
+    0 0 0 3px rgba(59,42,31,0.85);
+
+  background: #2b1d14;
 }
 
 
