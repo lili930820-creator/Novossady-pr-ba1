@@ -149,8 +149,19 @@
           0 10px 30px rgba(0,0,0,0.45);
       }
 .img-placeholder {
-  background: none;
-  border: none;
+  width: 65%;
+  height: 480px;
+  max-width: 440px;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  margin: 0 auto 16px auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none; /* 🔥 EZ A LÉNYEG */
+  border: none;            /* opcionális */
 }
  .img-placeholder img {
   width: 100%;
@@ -158,6 +169,7 @@
   object-fit: cover;
   border-radius: 14px;
 }
+
 
 
       .card-title {
