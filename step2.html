@@ -203,9 +203,7 @@
   <body>
     <main>
       <section class="hero">
-        <div class="elegant-progress">
-          <div class="progress-bar"></div>
-        </div>
+      <div class="progress-bar" id="formProgress"></div>     
       </section>
 
       <section class="form-section">
@@ -214,14 +212,14 @@
           <div class="style-section">
             <p class="style-title">Válassza ki a legszimpatikusabb viseletet:</p>
             <div class="style-grid">
-              <div class="style-card" data-group="casual" data-style="1">
+              <div class="style-card" data-group="step2_q1" data-style="dominans">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/3NqYyp1x/Dominans.png" alt="Domináns">
                 </div>
                 <p class="card-title">Domináns</p>
               </div>
-              <div class="style-card" data-group="casual" data-style="2">
-                <div class="img-placeholder">
+            <div class="style-card" data-group="step2_q1" data-style="visszafogott">
+             <div class="img-placeholder">
                   <img src="https://i.postimg.cc/j2BYqTq8/Visszafog.png" alt="Visszafogott">
                 </div>
                 <p class="card-title">Visszafogott</p>
@@ -232,13 +230,13 @@
           <div class="style-section">
             <p class="style-title">Válassza ki a legszimpatikusabb viseletet:</p>
             <div class="style-grid">
-              <div class="style-card" data-group="business" data-style="1">
+              <div class="style-card" data-group="step2_q2" data-style="strukturalt">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/YS2rspvG/Struktura-lt.png" alt="Struktúrált">
                 </div>
                 <p class="card-title">Struktúrált</p>
               </div>
-              <div class="style-card" data-group="business" data-style="2">
+              <div class="style-card" data-group="step2_q2" data-style="termeszetes">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/K8fFLd0X/Terme-szet.png" alt="Természetes">
                 </div>
@@ -250,13 +248,13 @@
           <div class="style-section">
             <p class="style-title">Válassza ki a legszimpatikusabb viseletet:</p>
             <div class="style-grid">
-              <div class="style-card" data-group="formal" data-style="1">
+              <div class="style-card" data-group="step2_q3" data-style="klasszikus">                
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/vHddKQjm/Klasszikus.png" alt="Klasszikus">
                 </div>
                 <p class="card-title">Klasszikus</p>
               </div>
-              <div class="style-card" data-group="formal" data-style="2">
+              <div class="style-card" data-group="step2_q3" data-style="kortars">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/brx4Pt5M/KORTA-RS.png" alt="Kortárs">
                 </div>
@@ -268,13 +266,13 @@
           <div class="style-section">
             <p class="style-title">Válassza ki a legszimpatikusabb viseletet:</p>
             <div class="style-grid">
-              <div class="style-card" data-group="personality" data-style="1">
+              <div class="style-card" data-group="step2_q4" data-style="introvertalt">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/W4xyJ8cL/Introverta-lt.png" alt="Introvertált">
                 </div>
                 <p class="card-title">Introvertált</p>
               </div>
-              <div class="style-card" data-group="personality" data-style="2">
+              <div class="style-card" data-group="step2_q4" data-style="extrovertalt">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/zXd0g7Ts/Extroverta-lt.png" alt="Extrovertált">
                 </div>
@@ -286,13 +284,13 @@
           <div class="style-section">
             <p class="style-title">Válassza ki a legszimpatikusabb viseletet:</p>
             <div class="style-grid">
-              <div class="style-card" data-group="expression" data-style="1">
+              <div class="style-card" data-group="step2_q5" data-style="szereny">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/bwDH2hyh/Visszafogott.png" alt="Szerény">
                 </div>
                 <p class="card-title">Szerény</p>
               </div>
-              <div class="style-card" data-group="expression" data-style="2">
+              <div class="style-card" data-group="step2_q5" data-style="gazdag">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/639vzJX8/Gazdag.png" alt="Gazdag">
                 </div>
@@ -304,13 +302,13 @@
           <div class="style-section">
             <p class="style-title">Válassza ki a legszimpatikusabb viseletet:</p>
             <div class="style-grid">
-              <div class="style-card" data-group="visibility" data-style="1">
+              <div class="style-card" data-group="step2_q6" data-style="diszkret">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/CK4ZRPqR/diszkre-t.png" alt="Diszkrét">
                 </div>
                 <p class="card-title">Diszkrét</p>
               </div>
-              <div class="style-card" data-group="visibility" data-style="2">
+              <div class="style-card" data-group="step2_q6" data-style="lathato">
                 <div class="img-placeholder">
                   <img src="https://i.postimg.cc/fyVkgMgf/lathato.png" alt="Látható">
                 </div>
@@ -322,5 +320,63 @@
         </div>
       </section>
     </main>
+    <script>
+  const TOTAL_STEPS = 12;
+  const STEP2_GROUPS = [
+    'step2_q1',
+    'step2_q2',
+    'step2_q3',
+    'step2_q4',
+    'step2_q5',
+    'step2_q6'
+  ];
+
+  function updateStep2Progress() {
+    let step2Completed = 0;
+
+    STEP2_GROUPS.forEach((group) => {
+      const selected = document.querySelector(`.style-card.selected[data-group="${group}"]`);
+      if (selected) {
+        step2Completed++;
+        localStorage.setItem(group, selected.dataset.style || 'selected');
+      }
+    });
+
+    localStorage.setItem('progress_step2_completed', String(step2Completed));
+
+    const indexCompleted = Number(localStorage.getItem('progress_index_completed') || 0);
+    const totalCompleted = indexCompleted + step2Completed;
+
+    const progressBar = document.getElementById('formProgress');
+    if (progressBar) {
+      progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
+    }
+  }
+
+  function restoreStep2Selections() {
+    STEP2_GROUPS.forEach((group) => {
+      const savedValue = localStorage.getItem(group);
+      if (!savedValue) return;
+
+      const card = document.querySelector(`.style-card[data-group="${group}"][data-style="${savedValue}"]`);
+      if (card) {
+        card.classList.add('selected');
+      }
+    });
+  }
+
+  document.querySelectorAll('.style-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const group = card.dataset.group;
+      const sameGroupCards = document.querySelectorAll(`.style-card[data-group="${group}"]`);
+      sameGroupCards.forEach((c) => c.classList.remove('selected'));
+      card.classList.add('selected');
+      updateStep2Progress();
+    });
+  });
+
+  restoreStep2Selections();
+  updateStep2Progress();
+</script>
   </body>
 </html>
