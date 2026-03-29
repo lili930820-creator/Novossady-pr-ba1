@@ -377,10 +377,9 @@
         color: #4b5563;
       }
 
-      .star-button {
-        .layout-row {
+     .layout-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 48px;
 }
@@ -390,6 +389,7 @@
   display: grid;
   gap: 24px;
   flex: 0 0 auto;
+  margin-left: 40px;
 }
 
 .cta-side {
@@ -397,28 +397,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.star-button {
-  .layout-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 48px;
-}
-
-.profile-intro {
-  width: min(100%, 500px);
-  display: grid;
-  gap: 24px;
-  flex: 0 0 auto;
-}
-
-.cta-side {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 420px;
+  padding-right: 120px;
+  padding-top: 40px;
 }
 
 .star-button {
@@ -431,9 +412,12 @@
   transition: all 0.3s ease;
   font-weight: 500;
   letter-spacing: 0.5px;
+  min-width: 260px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(199, 167, 122, 0.15);
 }
 
-     .star-button:hover {
+.star-button:hover {
   background: #3a2618;
   transform: scale(1.05);
 }
