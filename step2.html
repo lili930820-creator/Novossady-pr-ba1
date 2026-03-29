@@ -54,14 +54,17 @@
       }
 
       .elegant-progress .progress-bar {
-        height: 100%;
-        width: 50%;
-        background: linear-gradient(90deg, #c7a77a, #f8f8ff);
-        border-top-right-radius: 12px;
-        border-bottom-right-radius: 12px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c7a77a, #f8f8ff);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: width 0.4s ease;
+}
+
+     localStorage.clear()
 
       .form-section {
         position: relative;
