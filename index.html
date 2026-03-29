@@ -479,6 +479,33 @@
   gap: 16px;
 }
       
+.profile-intro {
+  width: min(100%, 460px);
+  justify-self: start;
+  display: grid;
+  gap: 24px;
+}
+
+.profile-intro .animated-block {
+  width: 100%;
+}
+
+.profile-intro .triple-row {
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.profile-intro .upload-wrap {
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
+.profile-intro .filename {
+  text-align: left;
+  margin-top: 8px;
+}
+      
+      
     </style>
   </head>
   <body>
@@ -495,6 +522,7 @@
     <section class="form-section">
         
         <div class="container stack">
+          <div class="profile-intro">
           <div class="animated-block">
             <label for="name">Név:</label>
             <input id="name" type="text" class="input-style" />
@@ -537,6 +565,7 @@
 </div>
 
 <p class="filename" id="fileNameText" hidden></p>
+            </div>
 
 </div>
 
