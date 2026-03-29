@@ -648,9 +648,9 @@
  </div>
 
   <div class="cta-side">
-  <a href="step2.html" class="star-button-link">
-    <button class="star-button">Kérem az elemzést</button>
-  </a>
+ <a href="step2.html" class="star-button-link" id="goToStep2">
+  <button class="star-button">Kérem az elemzést</button>
+</a>
 </div>
 </div>
 
@@ -661,10 +661,7 @@
     </main>
     
     
-   <script>
- localStorage.removeItem('progress_index_completed');
-  localStorage.removeItem('progress_step2_completed');
-     
+  <script>
   const effectsConfig = {
     textAutoHide: true,
     enableStars: false,
@@ -753,7 +750,6 @@
     });
 
     card.addEventListener('mouseenter', () => {});
-
     card.addEventListener('mouseleave', () => {
       card.style.setProperty('--glow-intensity', '0');
       card.style.transform = 'translate(0, 0) rotateX(0deg) rotateY(0deg)';
@@ -787,6 +783,39 @@
   const portraitInput = document.getElementById('portraitInput');
   const fileNameText = document.getElementById('fileNameText');
   const progressBar = document.getElementById('formProgress');
+  const goToStep2 = document.getElementById('goToStep2');
+
+  // Új indulás logika: csak akkor nullázunk, ha még nem fut session
+  if (!sessionStorage.getItem('flow_started')) {
+    sessionStorage.clear();
+    sessionStorage.setItem('flow_started', '1');
+  }
+
+  function restoreIndexData() {
+    const name = sessionStorage.getItem('form_name') || '';
+    const email = sessionStorage.getItem('form_email') || '';
+    const age = sessionStorage.getItem('form_age') || '';
+    const weight = sessionStorage.getItem('form_weight') || '';
+    const height = sessionStorage.getItem('form_height') || '';
+    const portraitName = sessionStorage.getItem('form_portrait_name') || '';
+
+    const nameEl = document.getElementById('name');
+    const emailEl = document.getElementById('email');
+    const ageEl = document.getElementById('age');
+    const weightEl = document.getElementById('weight');
+    const heightEl = document.getElementById('height');
+
+    if (nameEl) nameEl.value = name;
+    if (emailEl) emailEl.value = email;
+    if (ageEl) ageEl.value = age;
+    if (weightEl) weightEl.value = weight;
+    if (heightEl) heightEl.value = height;
+
+    if (portraitName && fileNameText) {
+      fileNameText.hidden = false;
+      fileNameText.textContent = `Feltöltve: ${portraitName}`;
+    }
+  }
 
   function saveIndexProgress() {
     const name = document.getElementById('name')?.value.trim() || '';
@@ -794,7 +823,13 @@
     const age = document.getElementById('age')?.value.trim() || '';
     const weight = document.getElementById('weight')?.value.trim() || '';
     const height = document.getElementById('height')?.value.trim() || '';
-    const portraitFilled = portraitInput?.files?.length > 0;
+    const portraitFilled = sessionStorage.getItem('form_portrait') === '1';
+
+    sessionStorage.setItem('form_name', name);
+    sessionStorage.setItem('form_email', email);
+    sessionStorage.setItem('form_age', age);
+    sessionStorage.setItem('form_weight', weight);
+    sessionStorage.setItem('form_height', height);
 
     let completed = 0;
     if (name) completed++;
@@ -804,9 +839,9 @@
     if (height) completed++;
     if (portraitFilled) completed++;
 
-    localStorage.setItem('progress_index_completed', String(completed));
+    sessionStorage.setItem('progress_index_completed', String(completed));
 
-    const step2Completed = Number(localStorage.getItem('progress_step2_completed') || 0);
+    const step2Completed = Number(sessionStorage.getItem('progress_step2_completed') || 0);
     const totalCompleted = completed + step2Completed;
 
     if (progressBar) {
@@ -816,14 +851,19 @@
 
   if (portraitInput && fileNameText) {
     portraitInput.addEventListener('change', (e) => {
-      const fileName = e.target.files && e.target.files[0] ? e.target.files[0].name : '';
+      const file = e.target.files && e.target.files[0];
+      const fileName = file ? file.name : '';
 
       if (fileName) {
         fileNameText.hidden = false;
         fileNameText.textContent = `Feltöltve: ${fileName}`;
+        sessionStorage.setItem('form_portrait', '1');
+        sessionStorage.setItem('form_portrait_name', fileName);
       } else {
         fileNameText.hidden = true;
         fileNameText.textContent = '';
+        sessionStorage.setItem('form_portrait', '0');
+        sessionStorage.removeItem('form_portrait_name');
       }
 
       saveIndexProgress();
@@ -836,6 +876,14 @@
   document.getElementById('weight')?.addEventListener('input', saveIndexProgress);
   document.getElementById('height')?.addEventListener('input', saveIndexProgress);
 
+  // Ha a user külön újra akarja kezdeni, ide lehet majd reset gombot kötni
+  if (goToStep2) {
+    goToStep2.addEventListener('click', () => {
+      saveIndexProgress();
+    });
+  }
+
+  restoreIndexData();
   saveIndexProgress();
 </script>
   </body>
