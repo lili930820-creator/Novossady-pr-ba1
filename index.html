@@ -793,21 +793,6 @@
   const fileNameText = document.getElementById('fileNameText');
   const progressBar = document.getElementById('formProgress');
 
-  if (portraitInput && fileNameText) {
-    portraitInput.addEventListener('change', (e) => {
-      const fileName = e.target.files && e.target.files[0] ? e.target.files[0].name : '';
-      if (fileName) {
-        fileNameText.hidden = false;
-        fileNameText.textContent = `Feltöltve: ${fileName}`;
-      } else {
-        fileNameText.hidden = true;
-        fileNameText.textContent = '';
-      }
-
-      saveIndexProgress();
-    });
-  }
-
   function saveIndexProgress() {
     const name = document.getElementById('name')?.value.trim() || '';
     const email = document.getElementById('email')?.value.trim() || '';
@@ -815,13 +800,6 @@
     const weight = document.getElementById('weight')?.value.trim() || '';
     const height = document.getElementById('height')?.value.trim() || '';
     const portraitFilled = portraitInput?.files?.length > 0;
-
-    localStorage.setItem('form_name', name);
-    localStorage.setItem('form_email', email);
-    localStorage.setItem('form_age', age);
-    localStorage.setItem('form_weight', weight);
-    localStorage.setItem('form_height', height);
-    localStorage.setItem('form_portrait', portraitFilled ? '1' : '0');
 
     let completed = 0;
     if (name) completed++;
@@ -839,6 +817,20 @@
     if (progressBar) {
       progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
     }
+  }
+
+  if (portraitInput && fileNameText) {
+    portraitInput.addEventListener('change', (e) => {
+      const fileName = e.target.files && e.target.files[0] ? e.target.files[0].name : '';
+      if (fileName) {
+        fileNameText.hidden = false;
+        fileNameText.textContent = `Feltöltve: ${fileName}`;
+      } else {
+        fileNameText.hidden = true;
+        fileNameText.textContent = '';
+      }
+      saveIndexProgress();
+    });
   }
 
   document.getElementById('name')?.addEventListener('input', saveIndexProgress);
