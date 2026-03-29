@@ -377,13 +377,6 @@
         color: #4b5563;
       }
 
-      .cta {
-        background: #000;
-        padding: 96px 24px;
-        display: flex;
-        justify-content: center;
-      }
-
       .star-button {
         position: relative;
         padding: 18px 48px;
@@ -528,6 +521,32 @@
 .centered-file-name {
   text-align: center;
 }
+
+      .layout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.profile-intro {
+  width: min(100%, 500px);
+  display: grid;
+  gap: 24px;
+  flex: 0 0 auto;
+}
+
+.cta-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-button {
+  min-width: 240px;
+  text-align: center;
+}
       
       
     </style>
@@ -545,7 +564,7 @@
      
     <section class="form-section">
         
-        <div class="container stack">
+        <div class="container layout-row">
           <div class="profile-intro">
           <div class="animated-block">
             <label for="name">Név:</label>
@@ -589,14 +608,18 @@
       <span>Portré feltöltése</span>
     </label>
     <input id="portraitInput" type="file" hidden />
-  </div>
+            
+            </div>
 
   <div></div>
 </div>
 
 <p class="filename centered-file-name" id="fileNameText" hidden></p>
-            </div>
+ </div>
 
+  <div class="cta-side">
+    <button class="star-button">Kérem az elemzést</button>
+  </div>
 </div>
 
      
@@ -711,9 +734,7 @@
         </div>
       </section>
 
-      <section class="cta">
-        <button class="star-button">Kérem az elemzést</button>
-      </section>
+  
     </main>
     
     
