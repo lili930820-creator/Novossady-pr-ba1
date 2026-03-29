@@ -345,19 +345,20 @@
 }
 
 
-      .folder-upload {
-        background: #2b1d14;
-        color: #f5e6d3;
-        padding: 14px 64px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 500;
-        border: 1px solid rgba(199, 167, 122, 0.35);
-      }
+     .folder-upload {
+  background: #2b1d14;
+  color: #f5e6d3;
+  padding: 14px 0; /* oldal padding nullázva */
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid rgba(199, 167, 122, 0.35);
 
-      display: inline-block;
-  white-space: nowrap; /* ← NE törjön több sorba */
+  display: block;
+  width: 100%;              /* ← EZ A LÉNYEG */
+  text-align: center;       /* szöveg középre */
+  white-space: nowrap;      /* ne törjön */
 }
 
       .folder-upload:hover {
