@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novossadi&Co. – 2. lépés</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bento-glow-rgb: 150, 110, 70;
+        --bento-bg: #1a120c;
+        --bento-border: #3b2a1f;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, Arial, sans-serif;
+        background: #000;
+        color: #fff;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        height: 260px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+          url(https://i.postimg.cc/nL3RGjhj/hatteruj-novosz.png);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.6;
+        z-index: -1;
+      }
+
+      .elegant-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+        z-index: 2;
+      }
+
+      .elegant-progress .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #c7a77a, #f8f8ff);
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        transition: width 0.4s ease;
+      }
+
+      .form-section {
+        position: relative;
+        padding: 80px 24px;
+        color: #2b2b2b;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(0,0,0,0.015) 0px,
+            rgba(0,0,0,0.015) 1px,
+            transparent 1px,
+            transparent 6px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.02) 0px,
+            rgba(0,0,0,0.02) 1px,
+            transparent 1px,
+            transparent 6px
+          ),
+          linear-gradient(180deg, #f5f1ea, #ebe5dc);
+      }
+
+      .form-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(0,0,0,0.05),
+          transparent 60%
+        );
+        opacity: 0.6;
+      }
+
+      /* KÉTOSZLOPOS LAYOUT: bal oldalt szöveg helye, jobb oldalt a képek */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 1;
+
+        display: grid;
+        grid-template-columns: minmax(260px, 1fr) 760px;
+        gap: 48px;
+        align-items: start;
+      }
+
+     .left-copy {
+  min-height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+      .right-content {
+        width: 100%;
+      }
+
+      .style-section {
+        padding-top: 40px;
+      }
+
+      .style-title {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 24px;
+        color: #2b2b2b;
+      }
+
+      /* 2 kártya egymás mellett, a teljes blokk a jobb oldali oszlopban */
+      .style-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        width: 100%;
+      }
+
+      .style-card {
+        cursor: pointer;
+        position: relative;
+        padding: 20px 10px 16px;
+        border-radius: 20px;
+        border: 1px solid var(--bento-border);
+        background: var(--bento-bg);
+        color: #fff;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .style-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      }
+
+      .style-card.selected {
+        border: 1px solid #c7a77a;
+        box-shadow:
+          0 0 0 1px rgba(199,167,122,0.35),
+          0 10px 30px rgba(0,0,0,0.45);
+      }
+
+      /* A KÉP MÉRETE VÁLTOZATLAN MARAD */
+      .img-placeholder {
+        width: 65%;
+        height: 480px;
+        max-width: 440px;
+        aspect-ratio: 3 / 4;
+        border-radius: 14px;
+        margin: 0 auto 12px auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.02) 0px,
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 4px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.15) 0px,
+            rgba(0,0,0,0.15) 1px,
+            transparent 1px,
+            transparent 4px
+          ),
+          linear-gradient(145deg, #2b1d14, #1a120c);
+
+        border: 1px solid rgba(199,167,122,0.25);
+      }
+
+      .img-placeholder img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+      .card-title {
+        text-align: center;
+        font-weight: 500;
+        margin: 0;
+        color: #f8f8ff;
+      }
+
+      @media (max-width: 1200px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+
+        .left-copy {
+          display: none;
+        }
+
+        .right-content {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          height: 210px;
+        }
+
+        .style-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .img-placeholder {
+          width: 85%;
+          height: 380px;
+        }
+      }
+      
+ 
+
+.question-copy {
+  color: #2b2b2b;
+  width: 100%;
+}
+
+.question-copy-title {
+  margin: 0 0 18px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.question-copy-text {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  text-align: center;
+  color: #2f2b27;
+}
+
+      
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="elegant-progress">
+          <div class="progress-bar" id="formProgress"></div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="container">
+
+          <!-- BAL OLDALI HELY A KÉSŐBBI SZÖVEGNEK -->
+         <div class="left-copy">
+  <div class="question-copy">
+    <h2 class="question-copy-title">DRAMATURGIA</h2>
+    <p class="question-copy-text">
+      Hogyan szeretsz jelen lenni mások előtt?<br><br>
+      Az egyik megjelenés csendes, visszafogott erőt sugall, a másik erőteljesebb, azonnal észrevehető jelenlétet.<br><br>
+      Melyik tükrözi jobban azt, ahogyan hatni szeretnél?
+    </p>
+  </div>
+</div>
+
+          <!-- JOBBRA IGAZÍTOTT KÁRTYABLOKK -->
+          <div class="right-content">
+
+           <div class="style-section">
+  <div class="style-grid">
+    <div class="style-card" data-group="step2_q1" data-style="visszafogott">
+      <div class="img-placeholder">
+        <img src="https://i.postimg.cc/br8JVF43/Visszafogott-(1).png" alt="Visszafogott">
+      </div>
+      <p class="card-title">Visszafogott</p>
+    </div>
+
+    <div class="style-card" data-group="step2_q1" data-style="karizmatikus">
+      <div class="img-placeholder">
+        <img src="https://i.postimg.cc/3xyK1TdH/Karizmatikus.png" alt="Karizmatikus">
+      </div>
+      <p class="card-title">Karizmatikus</p>
+    </div>
+  </div>
+</div>
+
+            <div class="style-section">
+              <div class="style-grid">
+                <div class="style-card" data-group="step2_q2" data-style="strukturalt">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/KjK9VJLD/Struktu-ra-lt.png" alt="Struktúrált">
+                  </div>
+                  <p class="card-title">Struktúrált</p>
+                </div>
+                <div class="style-card" data-group="step2_q2" data-style="termeszetes">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/XNRSW-CJS/Terme-szetes.png" alt="Természetes">
+                  </div>
+                  <p class="card-title">Természetes</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="style-section">
+              <div class="style-grid">
+                <div class="style-card" data-group="step2_q3" data-style="klasszikus">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/PrSW-Zmwf/Klasszikus-(1).png" alt="Klasszikus">
+                  </div>
+                  <p class="card-title">Klasszikus</p>
+                </div>
+                <div class="style-card" data-group="step2_q3" data-style="kortars">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/RV20jhr0/Korta-rs-(1).png" alt="Kortárs">
+                  </div>
+                  <p class="card-title">Kortárs</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="style-section">
+              <div class="style-grid">
+                <div class="style-card" data-group="step2_q4" data-style="introvertalt">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/KzYFKhSx/Introverta-lt-(1).png" alt="Introvertált">
+                  </div>
+                  <p class="card-title">Introvertált</p>
+                </div>
+                <div class="style-card" data-group="step2_q4" data-style="extrovertalt">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/fRjhBRMb/Ta-rsas.png" alt="Extrovertált">
+                  </div>
+                  <p class="card-title">Extrovertált</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="style-section">
+              <div class="style-grid">
+                <div class="style-card" data-group="step2_q5" data-style="letisztult">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/L8RsH7XZ/Letisztult.png" alt="Letisztult">
+                  </div>
+                  <p class="card-title">Letisztult</p>
+                </div>
+                <div class="style-card" data-group="step2_q5" data-style="retegzett">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/63GKVL3g/Re-tegzett.png" alt="Rétegzett">
+                  </div>
+                  <p class="card-title">Rétegzett</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="style-section">
+              <div class="style-grid">
+                <div class="style-card" data-group="step2_q6" data-style="diszkret">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/CK4ZRPqR/diszkre-t.png" alt="Diszkrét">
+                  </div>
+                  <p class="card-title">Diszkrét</p>
+                </div>
+                <div class="style-card" data-group="step2_q6" data-style="lathato">
+                  <div class="img-placeholder">
+                    <img src="https://i.postimg.cc/fyVkgMgf/lathato.png" alt="Látható">
+                  </div>
+                  <p class="card-title">Látható</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const TOTAL_STEPS = 12;
+
+      const STEP2_GROUPS = [
+        'step2_q1',
+        'step2_q2',
+        'step2_q3',
+        'step2_q4',
+        'step2_q5',
+        'step2_q6'
+      ];
+
+      function restoreStep2Selections() {
+        STEP2_GROUPS.forEach((group) => {
+          const savedValue = sessionStorage.getItem(group);
+          if (!savedValue) return;
+
+          const card = document.querySelector(`.style-card[data-group="${group}"][data-style="${savedValue}"]`);
+          if (card) {
+            card.classList.add('selected');
+          }
+        });
+      }
+
+      function updateStep2Progress() {
+        let step2Completed = 0;
+
+        STEP2_GROUPS.forEach((group) => {
+          const selected = document.querySelector(`.style-card.selected[data-group="${group}"]`);
+          if (selected) {
+            step2Completed++;
+            sessionStorage.setItem(group, selected.dataset.style || '');
+          }
+        });
+
+        sessionStorage.setItem('progress_step2_completed', String(step2Completed));
+
+        const indexCompleted = Number(sessionStorage.getItem('progress_index_completed') || 0);
+        const totalCompleted = indexCompleted + step2Completed;
+
+        const progressBar = document.getElementById('formProgress');
+        if (progressBar) {
+          progressBar.style.width = `${(totalCompleted / TOTAL_STEPS) * 100}%`;
+        }
+      }
+
+      document.querySelectorAll('.style-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          const group = card.dataset.group;
+          const sameGroupCards = document.querySelectorAll(`.style-card[data-group="${group}"]`);
+          sameGroupCards.forEach((c) => c.classList.remove('selected'));
+          card.classList.add('selected');
+          updateStep2Progress();
+        });
+      });
+
+      restoreStep2Selections();
+      updateStep2Progress();
+    </script>
+  </body>
+</html>
