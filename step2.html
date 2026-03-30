@@ -100,29 +100,23 @@
       }
 
       /* KÉTOSZLOPOS LAYOUT: bal oldalt szöveg helye, jobb oldalt a képek */
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 24px;
-        position: relative;
-        z-index: 1;
+     .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
 
-        display: grid;
-        grid-template-columns: minmax(260px, 1fr) 760px;
-        gap: 48px;
-        align-items: start;
-      }
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 760px;
+  gap: 48px;
+  align-items: center;
+}
 
 .left-copy {
-min-height: 40px;
   display: flex;
-  align-items: center; /* 🔥 EZ A LÉNYEG */
+  align-items: center;
   justify-content: center;
-}
-      
-.question-copy {
-  color: #2b2b2b;
-  width: 100%;
 }
 
 
@@ -251,12 +245,10 @@ min-height: 40px;
   
 
 .question-copy {
-  align-self: start;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   color: #2b2b2b;
-  padding-top: 0;
 }
 
 .question-copy-title {
