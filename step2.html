@@ -100,17 +100,12 @@
       }
 
       /* KÉTOSZLOPOS LAYOUT: bal oldalt szöveg helye, jobb oldalt a képek */
-     .container {
+   .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
   z-index: 1;
-
-  display: grid;
-  grid-template-columns: minmax(260px, 1fr) 760px;
-  gap: 48px;
-  align-items: center;
 }
 
 .left-copy {
@@ -268,6 +263,55 @@
   color: #2f2b27;
 }
 
+      .first-question-row {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 760px;
+  gap: 48px;
+  align-items: center;
+}
+
+.first-question-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-question-copy-inner {
+  width: 100%;
+  color: #2b2b2b;
+}
+
+.question-copy-title {
+  margin: 0 0 18px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.question-copy-text {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  text-align: center;
+  color: #2f2b27;
+}
+
+.first-question-pair {
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .first-question-row {
+    grid-template-columns: 1fr;
+  }
+
+  .first-question-copy {
+    margin-bottom: 24px;
+  }
+}
+
     </style>
   </head>
   <body>
@@ -282,35 +326,109 @@
         <div class="container">
 
           <!-- BAL OLDALI HELY A KÉSŐBBI SZÖVEGNEK -->
-         <div class="left-copy">
-  <div class="question-copy">
-    <h2 class="question-copy-title">DRAMATURGIA</h2>
-    <p class="question-copy-text">
-      Hogyan szeretsz jelen lenni mások előtt?<br><br>
-      Az egyik megjelenés csendes, visszafogott erőt sugall, a másik erőteljesebb, azonnal észrevehető jelenlétet.<br><br>
-      Melyik tükrözi jobban azt, ahogyan hatni szeretnél?
-    </p>
-  </div>
-</div>
+         
 
           <!-- JOBBRA IGAZÍTOTT KÁRTYABLOKK -->
           <div class="right-content">
 
-          <div class="style-section">
+         .first-question-row {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 760px;
+  gap: 48px;
+  align-items: center;
+}
+
+.first-question-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-question-copy-inner {
+  width: 100%;
+  color: #2b2b2b;
+}
+
+.question-copy-title {
+  margin: 0 0 18px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.question-copy-text {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  text-align: center;
+  color: #2f2b27;
+}
+
+.first-question-pair {
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .first-question-row {
+    grid-template-columns: 1fr;
+  }
+
+  .first-question-copy {
+    margin-bottom: 24px;
+  }
+}
+4. Az első képpárat cseréld le új szerkezetre
+
+Keresd meg az első ilyen blokkot:
+
+<div class="style-section">
   <div class="style-grid">
     <div class="style-card" data-group="step2_q1" data-style="visszafogott">
-      <div class="img-placeholder">
-        <img src="https://i.postimg.cc/br8JVF43/Visszafogott-(1).png" alt="Visszafogott">
-      </div>
-      <p class="card-title">Visszafogott</p>
+      ...
     </div>
 
     <div class="style-card" data-group="step2_q1" data-style="karizmatikus">
-      <div class="img-placeholder">
-        <img src="https://i.postimg.cc/3xyK1TdH/Karizmatikus.png" alt="Karizmatikus">
-      </div>
-      <p class="card-title">Karizmatikus</p>
+      ...
     </div>
+  </div>
+</div>
+
+és az egészet cseréld le erre:
+
+<div class="style-section">
+  <div class="first-question-row">
+
+    <div class="first-question-copy">
+      <div class="first-question-copy-inner">
+        <h2 class="question-copy-title">DRAMATURGIA</h2>
+        <p class="question-copy-text">
+          Hogyan szeretsz jelen lenni mások előtt?<br><br>
+          Az egyik megjelenés csendes, visszafogott erőt sugall, a másik erőteljesebb, azonnal észrevehető jelenlétet.<br><br>
+          Melyik tükrözi jobban azt, ahogyan hatni szeretnél?
+        </p>
+      </div>
+    </div>
+
+    <div class="first-question-pair">
+      <div class="style-grid">
+        <div class="style-card" data-group="step2_q1" data-style="visszafogott">
+          <div class="img-placeholder">
+            <img src="https://i.postimg.cc/br8JVF43/Visszafogott-(1).png" alt="Visszafogott">
+          </div>
+          <p class="card-title">Visszafogott</p>
+        </div>
+
+        <div class="style-card" data-group="step2_q1" data-style="karizmatikus">
+          <div class="img-placeholder">
+            <img src="https://i.postimg.cc/3xyK1TdH/Karizmatikus.png" alt="Karizmatikus">
+          </div>
+          <p class="card-title">Karizmatikus</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
