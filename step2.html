@@ -113,9 +113,14 @@
         align-items: start;
       }
 
-      .left-copy {
-        min-height: 40px;
-      }
+ .left-copy {
+  min-height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 40px;
+}
+
 
       .right-content {
         width: 100%;
@@ -125,12 +130,6 @@
         padding-top: 40px;
       }
 
-      .style-title {
-        font-size: 1.125rem;
-        font-weight: 500;
-        margin-bottom: 24px;
-        color: #2b2b2b;
-      }
 
       /* 2 kártya egymás mellett, a teljes blokk a jobb oldali oszlopban */
       .style-grid {
@@ -245,12 +244,7 @@
         }
       }
 
-      .question-row {
-  display: grid;
-  grid-template-columns: minmax(260px, 1fr) 760px;
-  gap: 48px;
-  align-items: start;
-}
+  
 
 .question-copy {
   align-self: start;
@@ -278,10 +272,6 @@
   color: #2f2b27;
 }
 
-.right-pair {
-  width: 100%;
-}
-      
     </style>
   </head>
   <body>
@@ -296,45 +286,37 @@
         <div class="container">
 
           <!-- BAL OLDALI HELY A KÉSŐBBI SZÖVEGNEK -->
-          <div class="left-copy"></div>
+         <div class="left-copy">
+  <div class="question-copy">
+    <h2 class="question-copy-title">DRAMATURGIA</h2>
+    <p class="question-copy-text">
+      Hogyan szeretsz jelen lenni mások előtt?<br><br>
+      Az egyik megjelenés csendes, visszafogott erőt sugall, a másik erőteljesebb, azonnal észrevehető jelenlétet.<br><br>
+      Melyik tükrözi jobban azt, ahogyan hatni szeretnél?
+    </p>
+  </div>
+</div>
 
           <!-- JOBBRA IGAZÍTOTT KÁRTYABLOKK -->
           <div class="right-content">
 
-           <div class="style-section">
-  <div class="question-row">
-
-    <div class="question-copy">
-      <h2 class="question-copy-title">DRAMATURGIA</h2>
-      <p class="question-copy-text">
-        Hogyan szeretsz jelen lenni mások előtt?<br><br>
-        Az egyik megjelenés csendes, visszafogott erőt sugall, a másik erőteljesebb, azonnal észrevehető jelenlétet.<br><br>
-        Melyik tükrözi jobban azt, ahogyan hatni szeretnél?
-      </p>
-    </div>
-
-    <div class="right-pair">
-      <div class="style-grid">
-        <div class="style-card" data-group="step2_q1" data-style="visszafogott">
-          <div class="img-placeholder">
-            <img src="https://i.postimg.cc/br8JVF43/Visszafogott-(1).png" alt="Visszafogott">
-          </div>
-          <p class="card-title">Visszafogott</p>
-        </div>
-
-        <div class="style-card" data-group="step2_q1" data-style="karizmatikus">
-          <div class="img-placeholder">
-            <img src="https://i.postimg.cc/3xyK1TdH/Karizmatikus.png" alt="Karizmatikus">
-          </div>
-          <p class="card-title">Karizmatikus</p>
-        </div>
+          <div class="style-section">
+  <div class="style-grid">
+    <div class="style-card" data-group="step2_q1" data-style="visszafogott">
+      <div class="img-placeholder">
+        <img src="https://i.postimg.cc/br8JVF43/Visszafogott-(1).png" alt="Visszafogott">
       </div>
+      <p class="card-title">Visszafogott</p>
     </div>
 
+    <div class="style-card" data-group="step2_q1" data-style="karizmatikus">
+      <div class="img-placeholder">
+        <img src="https://i.postimg.cc/3xyK1TdH/Karizmatikus.png" alt="Karizmatikus">
       </div>
+      <p class="card-title">Karizmatikus</p>
     </div>
-
- 
+  </div>
+</div>
 
             <div class="style-section">
               <div class="style-grid">
